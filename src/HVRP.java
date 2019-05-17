@@ -21,7 +21,7 @@ import nju.lzx.Route.*;
 
 // TODO: Auto-generated Javadoc
 /**
- * Heterogeneous Vehicle Routing Problem (HVRP)Çó½âÊ¾Àı¡£
+ * Heterogeneous Vehicle Routing Problem (HVRP)æ±‚è§£ç¤ºä¾‹ã€‚
  */
 public class HVRP {
 
@@ -37,21 +37,21 @@ public class HVRP {
 
 	
 	/**
-	 * Ö÷º¯Êı¡£
+	 * ä¸»å‡½æ•°ã€‚
 	 *
-	 * @param args ²ÎÊı¡£
-	 * @throws IOException IOÒì³£¡£
+	 * @param args å‚æ•°ã€‚
+	 * @throws IOException IOå¼‚å¸¸ã€‚
 	 */
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		double t1 = System.nanoTime();
 		InstanceHetero inst = (InstanceHetero) load_instance("data/Taillard_Heterogeneous/c100_20mix.txt");
 		inst.m = 99;
-		//ÉèÖÃÄ£Ê½²ÎÊı
+		//è®¾ç½®æ¨¡å¼å‚æ•°
 		inst.parameter.Mode.multi_thread_enable = true;
-		//ÉèÖÃ³õÊ¼½â²ÎÊı
+		//è®¾ç½®åˆå§‹è§£å‚æ•°
 		inst.parameter.InitialSolution.log_print = false;
-		//ÉèÖÃ½û¼ÉËÑË÷²ÎÊı
+		//è®¾ç½®ç¦å¿Œæœç´¢å‚æ•°
 		inst.parameter.TabuSearch.maximum_iteration = 1000;
 		inst.parameter.TabuSearch.maximum_tabu_tenure = 50;
 		inst.parameter.TabuSearch.tenure_decay_rate = 0.99;
@@ -62,7 +62,7 @@ public class HVRP {
 		inst.parameter.TabuSearch.minimum_shake_iteration = 100;
 		inst.parameter.TabuSearch.log_print = true;
 		inst.parameter.TabuSearch.log_detail = false;
-		//ÉèÖÃËã×Ó²ÎÊı
+		//è®¾ç½®ç®—å­å‚æ•°
 		inst.parameter.Operator.insertion_prune_threshhold = 1e6;
 		inst.parameter.Operator.exchange_prune_threshhold = 1e6;
 		inst.parameter.Operator.cross_prune_threshhold = 1e6;
@@ -70,7 +70,7 @@ public class HVRP {
 		inst.parameter.Operator.route_cross_threshhold = 1e6;
 		
 		
-		//¹¹ÔìÔ¼ÊøÌõ¼ş
+		//æ„é€ çº¦æŸæ¡ä»¶
 		Constraint[] cnts = new Constraint[3];
 		MinimizeDistance.ConstraintData[] dist_dats = new MinimizeDistance.ConstraintData[inst.nt];
 		for(int i = 0; i < inst.nt; i++)
@@ -85,7 +85,7 @@ public class HVRP {
 			cap_dats[i] = new CapacityConstraint.ConstraintData(inst.q, inst.Qt[i]);
 		cnts[2] = new CapacityConstraint(cap_dats, 0, true, 30);
 		
-		//¹¹ÔìËã·¨Ëã×Ó
+		//æ„é€ ç®—æ³•ç®—å­
 		Operator[] operators = new Operator[4];
 		double[] coefs = new double[4];
 		operators[0] = new RelocateBase(inst);
@@ -97,7 +97,7 @@ public class HVRP {
 		operators[3] = new RelocateBaseIntra(inst);
 		coefs[3] = 1;
 		
-		//¹¹ÔìĞèÒª·ÃÎÊµÄ½Úµã¼¯ºÏ
+		//æ„é€ éœ€è¦è®¿é—®çš„èŠ‚ç‚¹é›†åˆ
 		ArrayList<Atr> atrs = new ArrayList<Atr>();
 		for(int i = 1; i < inst.n; i++){
 			atrs.add(new Atr(i));
@@ -106,7 +106,7 @@ public class HVRP {
 		for(int i = 1; i < inst.n; i++)
 			exc[i] = true;
 		
-		//¹¹Ôì³õÊ¼½â
+		//æ„é€ åˆå§‹è§£
 		int[] tp = new int[inst.nt];
 		int[] mt = new int[inst.nt];
 		inst.mt[0] = 10000;
@@ -123,7 +123,7 @@ public class HVRP {
 		System.out.println("feasibility of the initial solution>>>" + greedy.is_feasible(s) + "\t" + s.size() + "\t" + greedy.get_total_cost(s));
 		//System.exit(0);
 		
-		//×îĞ¡»¯ĞĞÊ»¾àÀë
+		//æœ€å°åŒ–è¡Œé©¶è·ç¦»
 		TabuSearch tabu = new TabuSearch(inst, operators, coefs);
 		s = toDeep(inst, s);
 		tabu.check(s, true, exc);
@@ -140,11 +140,11 @@ public class HVRP {
 	}
 	
 	/**
-	 * ¼ÓÔØËãÀı¡£
+	 * åŠ è½½ç®—ä¾‹ã€‚
 	 *
-	 * @param path ËãÀıÂ·¾¶¡£
-	 * @return ·µ»ØËãÀı¡£
-	 * @throws FileNotFoundException IOÒì³£¡£
+	 * @param path ç®—ä¾‹è·¯å¾„ã€‚
+	 * @return è¿”å›ç®—ä¾‹ã€‚
+	 * @throws FileNotFoundException IOå¼‚å¸¸ã€‚
 	 */
 	public static Instance load_instance(String path) throws FileNotFoundException{
 		InstanceHetero inst = new InstanceHetero();
@@ -206,11 +206,11 @@ public class HVRP {
 
 	
 	/**
-	 * ½«Ò»¸öÆÕÍ¨µÄ½â×ª»»³ÉÒ»¸ö¿ÉÒÔ±»ExchangeBaseDeepºÍRelocateBseIntra²Ù×÷µÄ½â£¬¼´Â·¾¶ÖĞ°üº¬×ÓÂ·¾¶¡£
+	 * å°†ä¸€ä¸ªæ™®é€šè§£è½¬æ¢æˆä¸€ä¸ªå¯ä»¥è¢«ExchangeBaseDeepå’ŒRelocateBseIntraæ“ä½œçš„è§£ï¼Œå³è·¯å¾„ä¸­åŒ…å«å­è·¯å¾„ã€‚
 	 *
-	 * @param inst ËãÀıĞÅÏ¢¡£
-	 * @param s µ±Ç°½â¡£
-	 * @return ·µ»ØĞÂµÄ½â¡£
+	 * @param inst ç®—ä¾‹ä¿¡æ¯ã€‚
+	 * @param s å½“å‰è§£ã€‚
+	 * @return è¿”å›æ–°çš„è§£ã€‚
 	 */
 	public static ArrayList<Route> toDeep(Instance inst, ArrayList<Route> s){
 		ArrayList<Route> ns = new ArrayList<Route>();
