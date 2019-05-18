@@ -39,7 +39,7 @@ public class HVRP {
 	/**
 	 * 主函数。
 	 *
-	 * @param args 参数。
+	 * @param args 参数。。
 	 * @throws IOException IO异常。
 	 */
 	public static void main(String[] args) throws IOException {
