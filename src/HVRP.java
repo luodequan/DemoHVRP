@@ -21,7 +21,7 @@ import nju.lzx.Route.*;
 
 // TODO: Auto-generated Javadoc
 /**
- * Heterogeneous Vehicle Routing Problem (HVRP)求解示例。
+ * Heterogeneous Vehicle Routing Problem (HVRP)求解实力。
  */
 public class HVRP {
 
