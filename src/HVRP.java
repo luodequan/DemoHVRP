@@ -21,7 +21,7 @@ import nju.lzx.Route.*;
 
 // TODO: Auto-generated Javadoc
 /**
- * Heterogeneous Vehicle Routing Problem (HVRP)求解实力。
+ * Heterogeneous Vehicle Routing Problem (HVRP)求解示例。
  */
 public class HVRP {
 
@@ -45,7 +45,7 @@ public class HVRP {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		double t1 = System.nanoTime();
-		InstanceHetero inst = (InstanceHetero) load_instance("data/Taillard_Heterogeneous/c100_20mix.txt");
+		InstanceHetero inst = (InstanceHetero) load_instance("../data/Taillard_Heterogeneous/c100_20mix.txt");
 		inst.m = 99;
 		//设置模式参数
 		inst.parameter.Mode.multi_thread_enable = true;
