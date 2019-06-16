@@ -124,7 +124,7 @@ public class HVRP {
 		//System.exit(0);
 		
 		//最小化行驶距离
-		TabuSearch tabu = new TabuSearch(inst, operators, coefs);
+		TabuSearch tabu = new TabuSearch(inst, operators, coefs, null);
 		s = toDeep(inst, s);
 		tabu.check(s, true, exc);
 		for(int i = 0; i < s.size(); i++){
